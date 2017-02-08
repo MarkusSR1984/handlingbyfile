@@ -5,7 +5,7 @@ config: require('../freeroam/gm/config'),
 chat: jcmp.events.Call('get_chat')[0]
 };*/
 
-jcmp.events.Add("spawnmenu/local/vehicleSpawned", (player, vehicle) => {
+jcmp.events.Add("VehicleCreated", (vehicle) => {
 	//freeroam.chat.send(player, `handlingbyfile called`); debug
 	const fs = require('fs');
 	//try to read in a handling file for this vehicle....
@@ -25,7 +25,7 @@ jcmp.events.Add("spawnmenu/local/vehicleSpawned", (player, vehicle) => {
 	
 	function recursivelyequatetofile(sourceobj,targetobj){
 		//now cycle through each property in vehicle.handling..
-		Object.keys(targetobj).forEach(function(key,index) {
+		Object.keys(targetobj).forEach((key) => {
 				//console.log(`key ${key}`); debug
 				//ensure it's a property of vehicle.handling, not inherited from parent class
 				if(targetobj.hasOwnProperty(key)){ 
